@@ -93,6 +93,16 @@ iqin_impl::configure() {
     ERROR_CHECK(vsgSetFrequency(_handle, _frequency));
     ERROR_CHECK(vsgSetLevel(_handle, _level));
     ERROR_CHECK(vsgSetSampleRate(_handle, _srate));
+
+    // Check Settings
+    double sampleRate, actualLev, actualFeq;
+    ERROR_CHECK(vsgGetSampleRate(_handle, &sampleRate));
+    ERROR_CHECK(vsgGetLevel(_handle, &actualLev));
+    ERROR_CHECK(vsgGetFrequency(_handle, &actualFeq));
+    std::cout << "\nSample Rate: "<< sampleRate << "\n";
+    std::cout << "Actual Level: "<< actualLev << "\n";
+    std::cout << "Actual Frequency"<< actualFeq << "\n";
+
 }
 
 int iqin_impl::work(int noutput_items,
